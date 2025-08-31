@@ -2,15 +2,6 @@
 
 This is a simple food nutrition scanner app built with Expo. It uses your device's camera to scan food product labels and provides nutritional analysis using Google's Gemini 2.0 AI.
 
-<p align="center">
-  <img src="image.png" alt="Download QR Code" width="200" />
-</p>
-
-## Download
-
-Scan the QR code above or visit the link below to download the APK:
-[Download CalScan APK](https://expo.dev/accounts/bisht/projects/calscan/builds/44849850-cc64-477c-9641-a5e5b3503787)
-
 ## App Preview
 
 <p align="center">
