@@ -1,75 +1,105 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// app/(tabs)/index.tsx
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { useRouter } from 'expo-router';
+import { CameraIcon } from '../../components/CustomIcons';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
+  const handleScanFood = () => {
+    router.push('/camera');
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>CalScan</Text>
+      <Text style={styles.subtitle}>Scan food products for instant nutritional insights</Text>
+      
+      <TouchableOpacity 
+        style={styles.scanButton}
+        onPress={handleScanFood}
+        activeOpacity={0.8}
+      >
+        <View style={styles.scanButtonContent}>
+          <CameraIcon size={24} color="white" style={styles.cameraIcon} />
+          <Text style={styles.scanButtonText}>Scan Food</Text>
+        </View>
+      </TouchableOpacity>
+      
+      <Text style={styles.footerText}>
+        Point your camera at a food product's back label
+      </Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: '700',
+    color: '#000',
+    marginBottom: 12,
+    fontFamily: 'Outfit',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#999',
+    marginBottom: 48,
+    textAlign: 'center',
+    fontFamily: 'Outfit',
+    fontWeight: '400',
+    paddingHorizontal: 20,
+  },
+  scanButton: {
+    backgroundColor: '#000000',
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 8,
+    width: '80%',
+    maxWidth: 300,
+    marginBottom: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#007AFF',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  scanButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  cameraIcon: {
+    marginRight: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  scanButtonText: {
+    color: '#f5f5f5',
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+    fontFamily: 'Outfit',
+  },
+  footerText: {
+    color: '#666',
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Outfit',
+    fontWeight: '400',
+    marginTop: 40,
+    maxWidth: 300,
+    lineHeight: 20,
   },
 });

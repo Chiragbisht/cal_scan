@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "cal_scan",
-    "slug": "cal_scan",
+    "slug": "calscan",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,14 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bisht.calscan",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan food items for nutritional analysis."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA"
+      ],
+      "package": "com.bisht.calscan"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +45,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "03556fc4-fc47-4902-ad2b-dc05384cd35b"
+      }
+    },
+    "owner": "bisht"
   }
 }
