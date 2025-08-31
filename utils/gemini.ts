@@ -32,7 +32,7 @@ export async function analyzeFoodImage(imageUri: string): Promise<FoodAnalysisRe
     const base64Image = await uriToBase64(imageUri);
     
     // Initialize the model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-001" });
     
     // Create the enhanced prompt for detailed food analysis and rating
     const prompt = `
